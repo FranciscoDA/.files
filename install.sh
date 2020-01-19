@@ -34,7 +34,7 @@ arch)
 	sudo pacman -S bash-completion
 	if [ -z "$SSH_CLIENT" ] ; then
 		# install packages that are only useful in a graphic setup
-		sudo pacman -S adobe-source-code-pro-fonts
+		sudo pacman -S adobe-source-code-pro-fonts powerline-fonts
 	fi
 	;;
 *)
