@@ -13,7 +13,10 @@ __git_ps1() {
 	last_status="$?"
 	branch="$(git branch --show-current 2>/dev/null)"
 	if [ -n "$branch" ]; then
-		echo -e " \001\e[32m\002[$branch]\001\e[0m\002"
+		if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+			wdstatus='*'
+		fi
+		echo -e " [\001\e[32m\002$branch\001\e[93m\002$wdstatus\001\e[0m\002]"
 	fi
 	return "$last_status"
 }
