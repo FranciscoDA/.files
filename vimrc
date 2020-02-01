@@ -50,14 +50,17 @@ set foldlevel=99
 " enable copy to system clipboard
 set clipboard=unnamedplus
 
+" highlight search results
+set hlsearch
+
 set hidden " make buffers hidden by default
 nmap <C-PageUp> :bprev<CR>
 imap <C-PageUp> <Esc>:bprev<CR>
 nmap <C-PageDown> :bnext<CR>
 imap <C-PageDown> <Esc>:bnext<CR>
-nmap <C-W> :bdelete<CR>
-nmap <C-C> :q<CR>
+nmap <C-C> :bd<CR>
 nnoremap <space> za
+nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 " disable preview on clang_complete
 let g:clang_close_preview = 1
