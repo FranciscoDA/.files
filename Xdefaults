@@ -66,3 +66,10 @@ URxvt.matcher.button:     1
 ! disable ctrl shift default keybind
 URxvt.iso14755:    false
 URxvt.iso14755_52: false
+
+! bind ctrl-shift-c/v to copy/paste
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+! remove default ctrl-alt-c/v bindings
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
