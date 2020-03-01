@@ -59,12 +59,10 @@ URxvt.*.color7:       #d0d0d0
 URxvt.*.color15:      #f5f5f5
 
 ! enable clicking on links and tabs
-URxvt.perl-ext-common:    default,matcher,tabbed
+URxvt.perl-ext-common:    default,matcher
 URxvt.url-launcher:       xdg-open
 URxvt.matcher.button:     1
-URxvt.tabbed.tabbar-fg:   2
-URxvt.tabbed.tabbar-bg:   0
-URxvt.tabbed.tab-fg:      3
-URxvt.tabbed.tab-bg:      0
-URxvt.tabbed.new-button:  false
-URxvt.tabbed.tab-numbers: false
+
+! disable ctrl shift default keybind
+URxvt.iso14755:    false
+URxvt.iso14755_52: false
