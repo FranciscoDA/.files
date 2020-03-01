@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
-PROJECT_ROOT="$(dirname $(readlink -f "$0"))"
+PROJECT_ROOT="$(dirname $(realpath "$0"))"
 
 # install configuration files
 
 cp -rT "$PROJECT_ROOT/terminfo" ~/.terminfo
 cp "$PROJECT_ROOT/vimrc" ~/.vimrc
-cat "$PROJECT_ROOT/Xdefaults" >> ~/.Xdefaults
 cp "$PROJECT_ROOT/bashrc" ~/.bashrc
+
+
+# install Xresources if not present
+mkdir -p $HOME/.Xresources.d/
+cp "$PROJECT_ROOT/Xdefaults" ~/.Xresources.d/franciscoda.files
+if ! grep -F -q -s '#include ".Xresources.d/franciscoda.files"' $HOME/.Xdefaults ; then
+	echo '#include ".Xresources.d/franciscoda.files"' >> $HOME/.Xdefaults
+fi
+
 
 # install badwolf vim colorscheme
 VIM_COLOR_DIR=$(readlink -f ~/.vim/colors)
