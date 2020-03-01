@@ -15,6 +15,7 @@ cp "$PROJECT_ROOT/Xdefaults" ~/.Xresources.d/franciscoda.files
 if ! grep -F -q -s '#include ".Xresources.d/franciscoda.files"' $HOME/.Xdefaults ; then
 	echo '#include ".Xresources.d/franciscoda.files"' >> $HOME/.Xdefaults
 fi
+xrdb ~/.Xdefaults
 
 # install badwolf vim colorscheme
 VIM_COLOR_DIR=$(realpath ~/.vim/colors)
