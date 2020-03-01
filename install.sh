@@ -16,9 +16,15 @@ if ! grep -F -q -s '#include ".Xresources.d/franciscoda.files"' $HOME/.Xdefaults
 	echo '#include ".Xresources.d/franciscoda.files"' >> $HOME/.Xdefaults
 fi
 
+# install 'tabbed' plugin for urxvt
+URXVT_EXT_DIR="$(realpath ~/.urxvt/ext)"
+mkdir -p "$URXVT_EXT_DIR"
+if ! [ -a "$URXVT_EXT_DIR/tabbed" ] ; then
+	curl "https://raw.githubusercontent.com/gryf/tabbed/master/tabbed" -o "$URXVT_EXT_DIR/tabbed"
+fi
 
 # install badwolf vim colorscheme
-VIM_COLOR_DIR=$(readlink -f ~/.vim/colors)
+VIM_COLOR_DIR=$(realpath ~/.vim/colors)
 mkdir -p "$VIM_COLOR_DIR"
 for file in badwolf.vim goodwolf.vim ; do
 	if ! [ -a "$VIM_COLOR_DIR/$file" ]; then
