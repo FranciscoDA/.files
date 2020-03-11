@@ -17,15 +17,28 @@ if ! grep -F -q -s '#include ".Xresources.d/franciscoda.files"' $HOME/.Xdefaults
 fi
 xrdb ~/.Xdefaults
 
+function http_install_into() {
+	local FS_PATH="$1"
+	local HTTP_URL="$2"
+	if [ -e "$PATH" ] ; then
+		local ZFLAG="-z '$FS_PATH'"
+	else
+		local ZFLAG=''
+	fi
+	curl -o "$FS_PATH" $ZFLAG "$HTTP_URL"
+}
+
+# install urxvt extensions
+URXVT_EXT_DIR="$HOME/.urxvt/ext"
+mkdir -p "$URXVT_EXT_DIR"
+http_install_into "$URXVT_EXT_DIR/tabbedex" "https://raw.githubusercontent.com/shaggytwodope/tabbedex-urxvt/master/tabbedex"
+
 # install badwolf vim colorscheme
-VIM_COLOR_DIR=$(realpath ~/.vim/colors)
+VIM_COLOR_DIR="$HOME/.vim/colors"
 mkdir -p "$VIM_COLOR_DIR"
 for file in badwolf.vim goodwolf.vim ; do
-	if ! [ -a "$VIM_COLOR_DIR/$file" ]; then
-		curl "https://raw.githubusercontent.com/sjl/badwolf/master/colors/$file" -o "$VIM_COLOR_DIR/$file"
-	fi
+	http_install_into "$VIM_COLOR_DIR/$file" "https://raw.githubusercontent.com/sjl/badwolf/master/colors/$file"
 done
-
 
 # install vim vundle
 if ! [ -d ~/.vim/bundle/Vundle.vim ]; then
